@@ -4,6 +4,7 @@ import { focusNextElement, focusPrevElement } from "../utils";
 import { ListOuterElement } from "./list-outer-element";
 import { ListInnerElement } from "./list-inner-element";
 import { RowContainer } from "./row-container";
+import { ScrollArea } from "./scroll-area";
 
 let focusSearchTerm = "";
 let timeoutId: any = null;
@@ -221,7 +222,8 @@ export function DefaultContainer() {
         className={tree.props.className}
         outerRef={tree.listEl}
         itemCount={tree.visibleNodes.length}
-        height={tree.height}
+        // height={tree.height}
+        height={tree.visibleNodes.length * tree.rowHeight}
         width={tree.width}
         itemSize={tree.rowHeight}
         overscanCount={tree.overscanCount}

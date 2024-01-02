@@ -2,6 +2,8 @@ import { forwardRef } from "react";
 import { useTreeApi } from "../context";
 import { treeBlur } from "../state/focus-slice";
 import { Cursor } from "./cursor";
+import { ScrollArea } from './scroll-area';
+
 
 export const ListOuterElement = forwardRef(function Outer(
   props: React.HTMLProps<HTMLDivElement>,
@@ -9,18 +11,37 @@ export const ListOuterElement = forwardRef(function Outer(
 ) {
   const { children, ...rest } = props;
   const tree = useTreeApi();
+  // if (!tree || !children) {
+  //   return (
+  //     <div
+  //       // @ts-ignore-next-line
+  //       ref={ref}
+  //       {...rest}
+  //       onClick={(e) => {
+  //         if (e.currentTarget === e.target) tree.deselectAll();
+  //       }}
+  //     >
+  //       <DropContainer />
+  //       {children}
+  //     </div>
+  //   );
+  // }
+
   return (
-    <div
-      // @ts-ignore
+    <ScrollArea
+      className="edimov"
+    // @ts-ignore-next-line
       ref={ref}
       {...rest}
-      onClick={(e) => {
-        if (e.currentTarget === e.target) tree.deselectAll();
-      }}
+      type="always"
+      // onClick={(e) => {
+      //   // @ts-ignore-next-line
+      //   if (e.currentTarget === e.target) tree.deselectAll();
+      // }}
     >
       <DropContainer />
       {children}
-    </div>
+    </ScrollArea>
   );
 });
 
